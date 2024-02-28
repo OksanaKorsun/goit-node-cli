@@ -1,7 +1,8 @@
-const fs = require("fs/promises");
-const { nanoid } = require("nanoid");
+const fs = require("node:fs/promises");
+// const { nanoid } = require("nanoid");
+const crypto = require("node:crypto");
 
-const path = require("path");
+const path = require("node:path");
 // const contactsPath = path.resolve(__dirname, "db", "contacts.json");
 
 const contactsPath = path.join(__dirname, "db", "contacts.json");
@@ -33,7 +34,8 @@ async function removeContact(contactId) {
 async function addContact({ name, email, phone }) {
   const allContacts = await listContacts();
   const newContact = {
-    id: nanoid(),
+    // id: nanoid(),
+    id: crypto.randomUUID(),
     name,
     email,
     phone,
